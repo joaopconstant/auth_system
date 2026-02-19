@@ -1,5 +1,7 @@
 import express from "express";
 import authRoutes from "./routes/auth.routes.js";
+import userRoutes from "./routes/user.routes.js";
+import { errorHandler } from "./middlewares/error.middleware.js";
 
 export const app = express();
 
@@ -10,3 +12,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/auth", authRoutes);
+app.use("/user", userRoutes);
+
+// Centralized error handling
+app.use(errorHandler);
